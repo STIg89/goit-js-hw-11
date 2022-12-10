@@ -1,1 +1,85 @@
 @import './common';
+
+body {
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  background-color: rgb(49, 113, 197);
+  gap: 30px;
+}
+
+input,
+button {
+  font-size: 30px;
+  border-radius: 10px;
+  padding: 0 15px;
+  font-weight: 600;
+  height: 60px;
+}
+
+button {
+  width: 200px;
+  cursor: pointer;
+  transition: scale 0.2s;
+}
+
+button:hover,
+button:focus {
+  scale: 1.1;
+}
+
+button:active {
+  scale: 0.9;
+}
+.load-more {
+  margin: 0 auto 60px auto;
+  display: block;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.gallery {
+  padding: 0 50px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 30px 0;
+}
+.link {
+  width: calc((100% - 90px) / 4);
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(208, 202, 202, 0.49);
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid gray;
+  transition: scale 0.3s;
+  text-decoration: none;
+  color: black;
+  box-shadow: 3px 3px 3px 1px rgba(20, 21, 22, 0.3);
+}
+
+.link:hover,
+.link:focus {
+  scale: 1.13;
+}
+.picture {
+  object-fit: cover;
+  flex-grow: 1;
+}
+.info {
+  display: flex;
+  padding: 10px;
+  justify-content: space-around;
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
