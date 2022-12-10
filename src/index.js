@@ -28,11 +28,8 @@ async function onSearch(e) {
       picturesNotFound();
       return;
     }
-
     picturesTotalFound(data.totalHits);
-    renderGallery(data.hits);
-    refreshSimpleLightbox();
-    galleryApi.incrementPage();
+    createInterface(data);
 
     if (data.totalHits > galleryApi.per_page) {
       loadMore.classList.remove('visually-hidden');
@@ -46,19 +43,26 @@ async function onLoadMore() {
   loadMore.classList.add('visually-hidden');
   try {
     const data = await galleryApi.fetchPictures();
-    renderGallery(data.hits);
-    refreshSimpleLightbox();
-    galleryApi.incrementPage();
+    createInterface(data);
     smoothScroll();
-
-    const pagesTotal = Math.ceil(data.totalHits / galleryApi.per_page);
-
-    if (pagesTotal === galleryApi.page - 1) {
-      picturesOver();
-      return;
-    }
-    loadMore.classList.remove('visually-hidden');
+    checkEndCollection(data);
+    loadMore.classList.toggle('visually-hidden');
   } catch {
     oops();
+  }
+}
+
+function createInterface(data) {
+  renderGallery(data.hits);
+  refreshSimpleLightbox();
+  galleryApi.incrementPage();
+}
+
+function checkEndCollection(data) {
+  const pagesTotal = Math.ceil(data.totalHits / galleryApi.per_page);
+
+  if (pagesTotal === galleryApi.page - 1) {
+    picturesOver();
+    loadMore.classList.remove('visually-hidden');
   }
 }
